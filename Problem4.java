@@ -4,22 +4,24 @@ public class Problem4{
     for (int i = 100; i < 1000; i++){
       for (int j = 100; j < 1000; j++){
         int checking = j * i;
-        System.out.println(checking);
         boolean isPalindrome = true;
-        if (checking > greatestValue){
-          int checkingLength = (int) (Math.log10(checking) + 1);
-          System.out.println(checkingLength);
-          for (int k = 0; k < checkingLength; k++){
-            if (!(i % Math.pow(10, checkingLength - k) == j % Math.pow(10, k))){
-              isPalindrome = false;
-            }
-          }
-          if (isPalindrome){
-            greatestValue = checking;
-          }
+        if (checking > greatestValue && IsPalindrome(checking)){
+          greatestValue = checking;
         }
       }
     }
     System.out.println(greatestValue);
   }
+
+  public static boolean IsPalindrome(int x) {
+        if(x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+        int halfNumber = 0;
+        while(x > halfNumber) {
+            halfNumber = halfNumber * 10 + x % 10;
+            x /= 10;
+        }
+        return x == halfNumber || x == halfNumber/10;
+    }
 }
