@@ -1,3 +1,4 @@
+import java.lang.Math;
 public class Problem12{
   public static void main(String[] args){
     int triNum = 0;
@@ -12,11 +13,12 @@ public class Problem12{
 
   public static boolean overFiveHundred(int x){
     int counter = 0;
-    for (int i = 1; i <= x; i++){
+    for (int i = 1; i <= Math.sqrt(x); i++){
       if (x % i == 0){
         counter++;
       }
     }
+    counter *= 2;
     return (counter > 500);
   }
 }
