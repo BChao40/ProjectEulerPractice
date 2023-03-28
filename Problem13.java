@@ -9,13 +9,19 @@ public class Problem13{
 
     for (int i = 1; i <= 10; i++){
       Scanner myScanner = new Scanner(myFile);
-      String printLine = "";
       while (myScanner.hasNextLine()){
         String currentLine = myScanner.nextLine();
         int currentDigit = Integer.parseInt(currentLine.substring(currentLine.length() - i, currentLine.length() - i + 1));
-        printLine = printLine + currentDigit;
+        tenDigits[i - 1] += currentDigit;
+        if (tenDigits[i - 1] > 9){
+          if (i - 1 != 9){
+            tenDigits[i] = tenDigits[i - 1] / 10;
+          }
+          tenDigits[i - 1] %= 10;
+        }
       }
-      System.out.println(printLine);
     }
+
+    System.out.println(Arrays.toString(tenDigits));
   }
 }
