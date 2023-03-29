@@ -5,36 +5,39 @@ public class Problem13{
   public static void main(String[] args) throws FileNotFoundException{
     File myFile = new File("Input13.txt");
 
-    int[] tenDigits = new int[10];
-
-    for (int i = 1; i <= 10; i++){
+    int[] fiftyDigits = new int[52]; // This is to save time, but if I had a different sample size that I didn't know the size of, I'd use an array list that resizes to make room for a sum with more digits than the addends
+    //Additionally, I'd change specific checks to work with a changing arraylist.
+    for (int i = 1; i <= fiftyDigits.length; i++){
       Scanner myScanner = new Scanner(myFile);
       while (myScanner.hasNextLine()){
         String currentLine = myScanner.nextLine();
-        int currentDigit = Integer.parseInt(currentLine.substring(i - 1, i));
-        tenDigits[i - 1] += currentDigit;
-
+        if (i > 2){
+          int currentDigit = Integer.parseInt(currentLine.substring(fiftyDigits.length - i, fiftyDigits.length - i + 1));
+          fiftyDigits[i - 3] += currentDigit;
+        }
 
         /*
-        if (tenDigits[i - 1] > 9){
+        if (fiftyDigits[i - 1] > 9){
           if (i - 1 != 0){
-            tenDigits[i] += tenDigits[i - 1] / 10;
+            fiftyDigits[i] += fiftyDigits[i - 1] / 10;
           }
-          tenDigits[i - 1] %= 10;
+          fiftyDigits[i - 1] %= 10;
         }
         */
       }
     }
 
-    for (int i = 0; i < tenDigits.length; i++){
-      //carryOver(tenDigits, i);
+    for (int i = 0; i < fiftyDigits.length; i++){
+      carryOver(fiftyDigits, i);
     }
-    System.out.println(Arrays.toString(tenDigits));
+    System.out.println(Arrays.toString(fiftyDigits));
   }
 
   public static void carryOver(int[] arr, int index){
     int BiggestDigitPlace = 10;
     int value = arr[index];
+
+    System.out.println(value);
     while (arr[index] > BiggestDigitPlace){
       BiggestDigitPlace *= 10;
     }
