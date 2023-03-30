@@ -38,7 +38,7 @@ public class Problem14{
   }
 
   public static long smarter(int range){
-    LinkedList arr[] = new LinkedList[range];
+    LinkedList<Long>[] arr = new LinkedList<Long>[range];
     for (int i = 0; i < range; i++){
       long current = i;
       arr[i] = new LinkedList<Long>();
@@ -48,12 +48,10 @@ public class Problem14{
       }
     }
 
-    System.out.println(arr[13]);
-
     long start = 0;
     for (int i = 0; i < arr.length; i++){
       if (arr[i].size() > start){
-        //start = arr[i].getFirst();
+        start = arr[i].getFirst();
       }
     }
     return start;
