@@ -1,7 +1,22 @@
 public class Problem14{
   public static void main(String[] args){
     //System.out.println(recursion(1));
-    System.out.println(naive());
+    //System.out.println(naive());
+
+      int n = 40;
+      int value = 40;
+      int tempCount = 0;
+      System.out.println(value);
+      while (collatz(value) > 1){
+        System.out.println(collatz(value));
+        value = collatz(value);
+        tempCount++;
+      }
+
+      if (tempCount > 1){
+        System.out.println("Value: " + n + " and TempCount: " + tempCount);
+      }
+
   }
 
   public static int recursion(int x, int counter){
