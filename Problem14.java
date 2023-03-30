@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
 
+@SuppressWarnings("unchecked")
+
 public class Problem14{
   public static void main(String[] args){
     //System.out.println(recursion(1));
@@ -38,20 +40,22 @@ public class Problem14{
   }
 
   public static long smarter(int range){
-    LinkedList<Long>[] arr = new LinkedList<Long>[range];
+    Object[] arr = new Object[range];
     for (int i = 0; i < range; i++){
       long current = i;
-      arr[i] = new LinkedList<Long>();
+      LinkedList<Long> sequence = new LinkedList<Long>();
       while (current > 1){
-        arr[i].add(current);
+        sequence.add(current);
         current = collatz(current);
       }
+      arr[i] = sequence;
     }
 
     long start = 0;
     for (int i = 0; i < arr.length; i++){
-      if (arr[i].size() > start){
-        start = arr[i].getFirst();
+      LinkedList<Long> sequence = (LinkedList<Long>) arr[i];
+      if (sequence.size() > start){
+        start = sequence.getFirst();
       }
     }
     return start;
