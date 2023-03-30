@@ -1,7 +1,11 @@
+import java.util.*;
+import java.io.*;
+
 public class Problem14{
   public static void main(String[] args){
     //System.out.println(recursion(1));
     System.out.println(naive());
+    System.out.println(smarter(1000000));
 
   }
 
@@ -31,5 +35,27 @@ public class Problem14{
     }
 
     return startValue;
+  }
+
+  public static long smarter(int range){
+    LinkedList arr[] = new LinkedList[range];
+    for (int i = 0; i < range; i++){
+      long current = i;
+      arr[i] = new LinkedList<Long>();
+      while (current > 1){
+        arr[i].add(current);
+        current = collatz(current);
+      }
+    }
+
+    System.out.println(arr[13]);
+
+    long start = 0;
+    for (int i = 0; i < arr.length; i++){
+      if (arr[i].size() > start){
+        //start = arr[i].getFirst();
+      }
+    }
+    return start;
   }
 }
