@@ -5,8 +5,9 @@ import java.io.*;
 
 public class Problem14{
   public static void main(String[] args){
-    //System.out.println(recursion(1));
+    /*
     System.out.println(naive());
+    */
     System.out.println(smarter(1000000));
 
   }
@@ -39,6 +40,7 @@ public class Problem14{
     return startValue;
   }
 
+  /*
   public static long smarter(int range){
     Object[] arr = new Object[range];
     for (int i = 0; i < range; i++){
@@ -59,5 +61,31 @@ public class Problem14{
       }
     }
     return start;
+  }
+  */
+  public static long smarter(int range){
+    int longestSequence = 0;
+    long sequenceStarter = 0;
+    Node14[] arr = new Node14[(int) Math.pow(2, 31)]; // range of ints.
+    for (int i = 0; i < (int) Math.pow(2, 31) - 10; i++){ // range of ints.
+      arr[i] = new Node14(i);
+    }
+    for (int i = range - 1; i > 0; i--){
+      long next = collatz((long) i);
+      arr[i].setTail(arr[(int) next]);
+
+      while (arr[(int) collatz(next)].getTail() == null){
+        long temp = next;
+        next = collatz(next);
+        arr[(int) temp].setTail(arr[(int) next]);
+      }
+
+      int currentSequenceLen = arr[i].getLength();
+      if (currentSequenceLen > longestSequence){
+        longestSequence = currentSequenceLen;
+        sequenceStarter = arr[i].getHead();
+      }
+    }
+    return sequenceStarter;
   }
 }
