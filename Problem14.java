@@ -5,11 +5,12 @@ import java.io.*;
 
 public class Problem14{
   public static void main(String[] args){
-    /*
+    
     System.out.println(naive());
-    */
-    System.out.println(smarter(1000000));
 
+    /*
+    System.out.println(smarter(1000000));
+    */
   }
 
   public static long collatz(long x){
